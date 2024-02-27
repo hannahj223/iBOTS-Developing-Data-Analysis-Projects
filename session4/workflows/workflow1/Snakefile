@@ -90,10 +90,12 @@ rule combine_two_arrays_different:
         import pandas as pd
         array1 = np.load(input[0])
         array2 = np.load(input[1])
-        pd.DataFrame({
+        df=pd.DataFrame({
             "array1": array1,
             "array2":array2
         })
         df.to_csv(output[0],index=False)
+
+
 
 
