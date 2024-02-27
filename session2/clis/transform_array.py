@@ -1,25 +1,27 @@
 from argparse import ArgumentParser
+import numpy as np
 
 parser = ArgumentParser(description="transform an array file")
 
 parser.add_argument("infile", type=str,help="an .npy file to be analysed")
+parser.add_argument("outfile", type=str,help="an .npy file to be analysed")
 
-parser.add_argument("operation",type=str,choices=["normalised","standardised"])
+parser.add_argument("--operation",type=str,default="standardised",choices=["normalised","standardised"])
 
 args = parser.parse_args()
 
-if args.op == "normalise":
-    input_array_path = arg.infile # grab the first input
-    output_array_path = arg.outfile # grab the second input
+if args.operation == "normalised":
+    input_array_path = args.infile # grab the first input
+    output_array_path = args.outfile # grab the second input
 
     # Load the input and standardize it
     input_array = np.load(input_array_path)
     output_array = (input_array - np.min(input_array)) / np.max(input_array)
     print("normalised")
-elif args.op == "standardised":
+elif args.operation == "standardised":
     # Command-line inputs
-    input_array_path = arg.infile # grab the first input
-    output_array_path = arg.outfile # grab the second input
+    input_array_path = args.infile # grab the first input
+    output_array_path = args.outfile # grab the second input
 
     # Load the input and standardize it
     input_array = np.load(input_array_path)
