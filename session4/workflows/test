@@ -1,0 +1,7 @@
+rule rename_array:
+    input: "../data/raw/array.npy"
+    output: "../data/processed/renamed_arr.npy"
+    run: 
+        import numpy as np
+        data = np.load(input[0])
+        np.save(output[0], data)
